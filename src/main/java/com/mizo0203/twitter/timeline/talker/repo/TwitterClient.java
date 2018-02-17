@@ -1,6 +1,6 @@
 package com.mizo0203.twitter.timeline.talker.repo;
 
-import com.mizo0203.twitter.timeline.talker.domain.Define;
+import com.mizo0203.twitter.timeline.talker.domain.difine.KeysAndAccessTokens;
 import twitter4j.HttpResponse;
 import twitter4j.Twitter;
 import twitter4j.TwitterFactory;
@@ -26,8 +26,9 @@ public class TwitterClient {
 
   private static Twitter createTwitterInstance() {
     Twitter twitter = new TwitterFactory().getInstance();
-    twitter.setOAuthConsumer(Define.CONSUMER_KEY, Define.CONSUMER_SECRET);
-    twitter.setOAuthAccessToken(new AccessToken(Define.TOKEN, Define.TOKEN_SECRET));
+    twitter.setOAuthConsumer(KeysAndAccessTokens.CONSUMER_KEY, KeysAndAccessTokens.CONSUMER_SECRET);
+    twitter.setOAuthAccessToken(
+        new AccessToken(KeysAndAccessTokens.TOKEN, KeysAndAccessTokens.TOKEN_SECRET));
     return twitter;
   }
 

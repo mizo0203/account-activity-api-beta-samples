@@ -9,7 +9,7 @@
 
 package com.mizo0203.twitter.timeline.talker;
 
-import com.mizo0203.twitter.timeline.talker.domain.Define;
+import com.mizo0203.twitter.timeline.talker.domain.difine.KeysAndAccessTokens;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.IOUtils;
 
@@ -51,7 +51,8 @@ public class TwitterHookHandlerServlet extends HttpServlet {
 
   private String getSignature(String httpRequestBody)
       throws NoSuchAlgorithmException, InvalidKeyException, UnsupportedEncodingException {
-    SecretKeySpec key = new SecretKeySpec(Define.CONSUMER_SECRET.getBytes(), "HmacSHA256");
+    SecretKeySpec key =
+        new SecretKeySpec(KeysAndAccessTokens.CONSUMER_SECRET.getBytes(), "HmacSHA256");
     Mac mac = Mac.getInstance("HmacSHA256");
     mac.init(key);
     byte[] source = httpRequestBody.getBytes("UTF-8");
