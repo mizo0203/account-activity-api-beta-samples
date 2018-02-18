@@ -20,6 +20,16 @@
         <url-pattern>/admin/subscriptions</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>deactivates_subscriptions</servlet-name>
+        <servlet-class>com.mizo0203.twitter.account.activity.api.beta.samples.DeactivatesSubscriptionsServlet
+        </servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deactivates_subscriptions</servlet-name>
+        <url-pattern>/admin/deactivates_subscriptions</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>twitter_hook</servlet-name>
         <servlet-class>com.mizo0203.twitter.account.activity.api.beta.samples.TwitterHookHandlerServlet</servlet-class>
     </servlet>

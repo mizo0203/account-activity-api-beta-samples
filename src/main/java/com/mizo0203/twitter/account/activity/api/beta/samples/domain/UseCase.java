@@ -22,4 +22,15 @@ public class UseCase implements AutoCloseable {
   public void subscriptions() {
     mTwitterClient.subscriptions();
   }
+
+  /**
+   * Deactivates subscription(s) for the provided user context and app for all activities. After
+   * deactivation, all All events for the requesting user will no longer be sent to the webhook URL.
+   *
+   * <p>提供されたユーザーコンテキストのサブスクリプションとすべてのアクティビティのアプリケーションを非アクティブ化します。
+   * 非アクティブ化後、要求元ユーザのすべてのすべてのイベントはWebHook URLに送信されなくなります。
+   */
+  public void deactivatesSubscriptions() {
+    mTwitterClient.deactivatesSubscriptions();
+  }
 }

@@ -1,10 +1,9 @@
 package com.mizo0203.twitter.account.activity.api.beta.samples.repo;
 
-import com.mizo0203.twitter.account.activity.api.beta.samples.domain.difine.KeysAndAccessTokens;
 import twitter4j.HttpResponse;
 import twitter4j.Twitter;
-import twitter4j.TwitterFactory;
-import twitter4j.auth.AccessToken;
+import twitter4j.Twitter4JUtil;
+import twitter4j.TwitterException;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -19,17 +18,11 @@ public class TwitterClient {
   private static final String TWITTER_API_ACCOUNT_ACTIVITY_SUBSCRIPTIONS_ENV_NAME_URL_STR =
       "https://api.twitter.com/1.1/account_activity/all/env-beta/subscriptions.json";
   private final Twitter mTwitter;
+  private final Twitter4JUtil mTwitter4JUtil;
 
   public TwitterClient() {
-    mTwitter = createTwitterInstance();
-  }
-
-  private static Twitter createTwitterInstance() {
-    Twitter twitter = new TwitterFactory().getInstance();
-    twitter.setOAuthConsumer(KeysAndAccessTokens.CONSUMER_KEY, KeysAndAccessTokens.CONSUMER_SECRET);
-    twitter.setOAuthAccessToken(
-        new AccessToken(KeysAndAccessTokens.TOKEN, KeysAndAccessTokens.TOKEN_SECRET));
-    return twitter;
+    mTwitter4JUtil = new Twitter4JUtil();
+    mTwitter = mTwitter4JUtil.getTwitter();
   }
 
   public void registersWebhookURL() {
@@ -55,6 +48,24 @@ public class TwitterClient {
       LOG.log(Level.INFO, "subscriptions ret: " + ret);
     } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
       LOG.log(Level.SEVERE, "subscriptions", e);
+    }
+  }
+
+  /**
+   * Deactivates subscription(s) for the provided user context and app for all activities. After
+   * deactivation, all All events for the requesting user will no longer be sent to the webhook URL.
+   *
+   * <p>提供されたユーザーコンテキストのサブスクリプションとすべてのアクティビティのアプリケーションを非アクティブ化します。
+   * 非アクティブ化後、要求元ユーザのすべてのすべてのイベントはWebHook URLに送信されなくなります。
+   */
+  public void deactivatesSubscriptions() {
+    try {
+      HttpResponse ret =
+          mTwitter4JUtil.delete(TWITTER_API_ACCOUNT_ACTIVITY_SUBSCRIPTIONS_ENV_NAME_URL_STR);
+      LOG.log(Level.INFO, "subscriptions ret.toString(): " + ret.toString());
+      LOG.log(Level.INFO, "subscriptions ret.asString(): " + ret.asString());
+    } catch (TwitterException e) {
+      e.printStackTrace();
     }
   }
 }
