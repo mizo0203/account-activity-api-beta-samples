@@ -1,4 +1,4 @@
-package com.mizo0203.twitter.timeline.talker.util;
+package com.mizo0203.twitter.account.activity.api.beta.samples.util;
 
 import org.apache.http.client.utils.URIBuilder;
 

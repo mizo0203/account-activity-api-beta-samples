@@ -1,4 +1,4 @@
-package com.mizo0203.twitter.timeline.talker.domain.difine;
+package com.mizo0203.twitter.account.activity.api.beta.samples.domain.difine;
 
 public class KeysAndAccessTokens {
   // TODO: Set Keys and Access Tokens

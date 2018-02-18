@@ -1,6 +1,6 @@
-package com.mizo0203.twitter.timeline.talker.repo;
+package com.mizo0203.twitter.account.activity.api.beta.samples.repo;
 
-import com.mizo0203.twitter.timeline.talker.domain.difine.KeysAndAccessTokens;
+import com.mizo0203.twitter.account.activity.api.beta.samples.domain.difine.KeysAndAccessTokens;
 import twitter4j.HttpResponse;
 import twitter4j.Twitter;
 import twitter4j.TwitterFactory;

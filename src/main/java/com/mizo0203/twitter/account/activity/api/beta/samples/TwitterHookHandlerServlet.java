@@ -7,9 +7,9 @@
  * for the specific language governing permissions and limitations under the License.
  */
 
-package com.mizo0203.twitter.timeline.talker;
+package com.mizo0203.twitter.account.activity.api.beta.samples;
 
-import com.mizo0203.twitter.timeline.talker.domain.difine.KeysAndAccessTokens;
+import com.mizo0203.twitter.account.activity.api.beta.samples.domain.difine.KeysAndAccessTokens;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.IOUtils;
 

@@ -5,7 +5,7 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
     <servlet>
         <servlet-name>registersWebhookURL</servlet-name>
-        <servlet-class>com.mizo0203.twitter.timeline.talker.RegistersWebhookUrlServlet</servlet-class>
+        <servlet-class>com.mizo0203.twitter.account.activity.api.beta.samples.RegistersWebhookUrlServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>registersWebhookURL</servlet-name>
@@ -13,7 +13,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>subscriptions</servlet-name>
-        <servlet-class>com.mizo0203.twitter.timeline.talker.SubscriptionsServlet</servlet-class>
+        <servlet-class>com.mizo0203.twitter.account.activity.api.beta.samples.SubscriptionsServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>subscriptions</servlet-name>
@@ -21,16 +21,13 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>twitter_hook</servlet-name>
-        <servlet-class>com.mizo0203.twitter.timeline.talker.TwitterHookHandlerServlet</servlet-class>
+        <servlet-class>com.mizo0203.twitter.account.activity.api.beta.samples.TwitterHookHandlerServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>twitter_hook</servlet-name>
         <url-pattern>/twitter_hook</url-pattern>
     </servlet-mapping>
 
-    <listener>
-        <listener-class>com.mizo0203.twitter.timeline.talker.repo.objectify.OfyHelper</listener-class>
-    </listener>
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>admin</web-resource-name>
