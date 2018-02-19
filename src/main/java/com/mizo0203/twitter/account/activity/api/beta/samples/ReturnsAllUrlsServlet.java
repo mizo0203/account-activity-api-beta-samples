@@ -7,12 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class SubscriptionsServlet extends HttpServlet {
+public class ReturnsAllUrlsServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
     try (UseCase useCase = new UseCase()) {
-      useCase.subscriptions();
+      useCase.returnsAllUrls();
     }
   }
 }

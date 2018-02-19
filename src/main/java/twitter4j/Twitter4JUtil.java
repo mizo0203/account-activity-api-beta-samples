@@ -37,6 +37,10 @@ public class Twitter4JUtil {
     return mTwitter;
   }
 
+  public HttpResponse get(String url) throws TwitterException {
+    return mTwitter.http.get(url, IMPLICIT_PARAMS, mTwitter.auth, mTwitter);
+  }
+
   private HttpResponse post(String url) throws TwitterException {
     mTwitter.ensureAuthorizationEnabled();
     if (!mTwitter.conf.isMBeanEnabled()) {

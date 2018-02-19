@@ -15,6 +15,8 @@ public class TwitterClient {
   private static final Logger LOG = Logger.getLogger(TwitterClient.class.getName());
   private static final String TWITTER_API_ACCOUNT_ACTIVITY_WEBHOOKS_ENV_NAME_URL_STR =
       "https://api.twitter.com/1.1/account_activity/all/env-beta/webhooks.json?url=https%3A%2F%2Fapi-project-93144643231.appspot.com%2Ftwitter_hook";
+  private static final String TWITTER_API_ACCOUNT_ACTIVITY_WEBHOOKS_URL_STR =
+      "https://api.twitter.com/1.1/account_activity/all/webhooks.json";
   private static final String TWITTER_API_ACCOUNT_ACTIVITY_SUBSCRIPTIONS_ENV_NAME_URL_STR =
       "https://api.twitter.com/1.1/account_activity/all/env-beta/subscriptions.json";
   private final Twitter mTwitter;
@@ -35,6 +37,24 @@ public class TwitterClient {
       LOG.log(Level.INFO, "registersWebhookURL ret: " + ret);
     } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
       LOG.log(Level.SEVERE, "registersWebhookURL", e);
+    }
+  }
+
+  /**
+   * Returns all URLs and their statuses for the given app for all events. Currently, only one
+   * webhook URL can be registered to an application. We mark a URL as invalid if it fails the daily
+   * validation check. In order to re-enable the URL, call the update endpoint.
+   *
+   * <p>指定されたすべてのイベントのURLとそのステータスを返します。 現在、Webhook URLはアプリケーションに1つしか登録できません。
+   * 毎日の妥当性チェックに失敗した場合は、URLを無効とマークします。 URLを再度有効にするには、更新エンドポイントを呼び出します。
+   */
+  public void returnsAllUrls() {
+    try {
+      HttpResponse ret = mTwitter4JUtil.get(TWITTER_API_ACCOUNT_ACTIVITY_WEBHOOKS_URL_STR);
+      LOG.log(Level.INFO, "returnsAllUrls ret.toString(): " + ret.toString());
+      LOG.log(Level.INFO, "returnsAllUrls ret.asString(): " + ret.asString());
+    } catch (TwitterException e) {
+      e.printStackTrace();
     }
   }
 
@@ -62,8 +82,8 @@ public class TwitterClient {
     try {
       HttpResponse ret =
           mTwitter4JUtil.delete(TWITTER_API_ACCOUNT_ACTIVITY_SUBSCRIPTIONS_ENV_NAME_URL_STR);
-      LOG.log(Level.INFO, "subscriptions ret.toString(): " + ret.toString());
-      LOG.log(Level.INFO, "subscriptions ret.asString(): " + ret.asString());
+      LOG.log(Level.INFO, "deactivatesSubscriptions ret.toString(): " + ret.toString());
+      LOG.log(Level.INFO, "deactivatesSubscriptions ret.asString(): " + ret.asString());
     } catch (TwitterException e) {
       e.printStackTrace();
     }

@@ -20,6 +20,14 @@
         <url-pattern>/admin/subscriptions</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>returns_all_urls</servlet-name>
+        <servlet-class>com.mizo0203.twitter.account.activity.api.beta.samples.ReturnsAllUrlsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>returns_all_urls</servlet-name>
+        <url-pattern>/admin/returns_all_urls</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>deactivates_subscriptions</servlet-name>
         <servlet-class>com.mizo0203.twitter.account.activity.api.beta.samples.DeactivatesSubscriptionsServlet
         </servlet-class>

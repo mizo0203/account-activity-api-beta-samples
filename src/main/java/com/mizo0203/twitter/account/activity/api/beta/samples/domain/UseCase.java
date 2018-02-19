@@ -19,6 +19,18 @@ public class UseCase implements AutoCloseable {
     mTwitterClient.registersWebhookURL();
   }
 
+  /**
+   * Returns all URLs and their statuses for the given app for all events. Currently, only one
+   * webhook URL can be registered to an application. We mark a URL as invalid if it fails the daily
+   * validation check. In order to re-enable the URL, call the update endpoint.
+   *
+   * <p>指定されたすべてのイベントのURLとそのステータスを返します。 現在、Webhook URLはアプリケーションに1つしか登録できません。
+   * 毎日の妥当性チェックに失敗した場合は、URLを無効とマークします。 URLを再度有効にするには、更新エンドポイントを呼び出します。
+   */
+  public void returnsAllUrls() {
+    mTwitterClient.returnsAllUrls();
+  }
+
   public void subscriptions() {
     mTwitterClient.subscriptions();
   }
