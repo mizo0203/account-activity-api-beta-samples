@@ -20,6 +20,14 @@
         <url-pattern>/admin/subscriptions</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>is_subscribed</servlet-name>
+        <servlet-class>com.mizo0203.twitter.account.activity.api.beta.samples.IsSubscribedServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>is_subscribed</servlet-name>
+        <url-pattern>/admin/is_subscribed</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>returns_all_urls</servlet-name>
         <servlet-class>com.mizo0203.twitter.account.activity.api.beta.samples.ReturnsAllUrlsServlet</servlet-class>
     </servlet>

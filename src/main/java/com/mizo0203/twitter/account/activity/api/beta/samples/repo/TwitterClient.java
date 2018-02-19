@@ -72,6 +72,27 @@ public class TwitterClient {
   }
 
   /**
+   * Provides a way to determine if a webhook configuration is subscribed to the provided user’s All
+   * events. If the provided user context has an active subscription with provided app, returns 204
+   * OK. If the response code is not 204, then the user does not have an active subscription. See
+   * HTTP Response code and error messages below for details.
+   *
+   * <p>Webhook設定が、提供されたユーザのすべてのイベントに登録されているかどうかを判断する方法を提供します。
+   * 提供されたユーザーコンテキストに、提供されたアプリケーションによるアクティブなサブスクリプションがある場合は、204 OKを返します。
+   * 応答コードが204でない場合、ユーザーにはアクティブなサブスクリプションがありません。 詳細については、下記の「HTTPレスポンスコードとエラーメッセージ」を参照してください。
+   */
+  public void isSubscribed() {
+    try {
+      HttpResponse ret =
+          mTwitter4JUtil.get(TWITTER_API_ACCOUNT_ACTIVITY_SUBSCRIPTIONS_ENV_NAME_URL_STR);
+      LOG.log(Level.INFO, "isSubscribed ret.toString(): " + ret.toString());
+      LOG.log(Level.INFO, "isSubscribed ret.asString(): " + ret.asString());
+    } catch (TwitterException e) {
+      e.printStackTrace();
+    }
+  }
+
+  /**
    * Deactivates subscription(s) for the provided user context and app for all activities. After
    * deactivation, all All events for the requesting user will no longer be sent to the webhook URL.
    *
