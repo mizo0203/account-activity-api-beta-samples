@@ -1,2 +1,2 @@
-# lily-white-line-notify
-リマインダー LINE Notify リリーホワイト
+# account-activity-api-beta-samples
+Twitter Account Activity API (beta) を使うサンプルコード
