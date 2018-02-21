@@ -24,7 +24,7 @@ public class TwitterClient {
 
   public TwitterClient() {
     mTwitter4JUtil = new Twitter4JUtil();
-    mTwitter = mTwitter4JUtil.getTwitter();
+    mTwitter = mTwitter4JUtil.getUserAuthentication().getTwitter();
   }
 
   public void registersWebhookURL() {
@@ -50,7 +50,8 @@ public class TwitterClient {
    */
   public void returnsAllUrls() {
     try {
-      HttpResponse ret = mTwitter4JUtil.get(TWITTER_API_ACCOUNT_ACTIVITY_WEBHOOKS_URL_STR);
+      HttpResponse ret =
+          mTwitter4JUtil.getUserAuthentication().get(TWITTER_API_ACCOUNT_ACTIVITY_WEBHOOKS_URL_STR);
       LOG.log(Level.INFO, "returnsAllUrls ret.toString(): " + ret.toString());
       LOG.log(Level.INFO, "returnsAllUrls ret.asString(): " + ret.asString());
     } catch (TwitterException e) {
@@ -84,7 +85,9 @@ public class TwitterClient {
   public void isSubscribed() {
     try {
       HttpResponse ret =
-          mTwitter4JUtil.get(TWITTER_API_ACCOUNT_ACTIVITY_SUBSCRIPTIONS_ENV_NAME_URL_STR);
+          mTwitter4JUtil
+              .getUserAuthentication()
+              .get(TWITTER_API_ACCOUNT_ACTIVITY_SUBSCRIPTIONS_ENV_NAME_URL_STR);
       LOG.log(Level.INFO, "isSubscribed ret.toString(): " + ret.toString());
       LOG.log(Level.INFO, "isSubscribed ret.asString(): " + ret.asString());
     } catch (TwitterException e) {
@@ -102,7 +105,9 @@ public class TwitterClient {
   public void deactivatesSubscriptions() {
     try {
       HttpResponse ret =
-          mTwitter4JUtil.delete(TWITTER_API_ACCOUNT_ACTIVITY_SUBSCRIPTIONS_ENV_NAME_URL_STR);
+          mTwitter4JUtil
+              .getUserAuthentication()
+              .delete(TWITTER_API_ACCOUNT_ACTIVITY_SUBSCRIPTIONS_ENV_NAME_URL_STR);
       LOG.log(Level.INFO, "deactivatesSubscriptions ret.toString(): " + ret.toString());
       LOG.log(Level.INFO, "deactivatesSubscriptions ret.asString(): " + ret.asString());
     } catch (TwitterException e) {
