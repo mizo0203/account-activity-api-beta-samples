@@ -36,6 +36,18 @@ public class UseCase implements AutoCloseable {
   }
 
   /**
+   * Returns the count of subscriptions that are currently active on your account for all
+   * activities. Note that the /count endpoint requires App-only Oauth, so that you should make
+   * requests using a bearer token instead of app-user auth.
+   *
+   * <p>すべてのアクティビティに対してアカウントで現在アクティブなサブスクリプションの数を返します。 / countエンドポイントにはApp-only Oauthが必要なので、app-user
+   * authの代わりにベアラトークンを使用してリクエストを行う必要があることに注意してください。
+   */
+  public void countSubscriptions() {
+    mTwitterClient.countSubscriptions();
+  }
+
+  /**
    * Provides a way to determine if a webhook configuration is subscribed to the provided user’s All
    * events. If the provided user context has an active subscription with provided app, returns 204
    * OK. If the response code is not 204, then the user does not have an active subscription. See

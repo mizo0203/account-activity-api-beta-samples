@@ -19,6 +19,8 @@ public class TwitterClient {
       "https://api.twitter.com/1.1/account_activity/all/webhooks.json";
   private static final String TWITTER_API_ACCOUNT_ACTIVITY_SUBSCRIPTIONS_ENV_NAME_URL_STR =
       "https://api.twitter.com/1.1/account_activity/all/env-beta/subscriptions.json";
+  private static final String TWITTER_API_ACCOUNT_ACTIVITY_COUNT_URL_STR =
+      "https://api.twitter.com/1.1/account_activity/all/count.json";
   private final Twitter mTwitter;
   private final Twitter4JUtil mTwitter4JUtil;
 
@@ -69,6 +71,27 @@ public class TwitterClient {
       LOG.log(Level.INFO, "subscriptions ret: " + ret);
     } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
       LOG.log(Level.SEVERE, "subscriptions", e);
+    }
+  }
+
+  /**
+   * Returns the count of subscriptions that are currently active on your account for all
+   * activities. Note that the /count endpoint requires App-only Oauth, so that you should make
+   * requests using a bearer token instead of app-user auth.
+   *
+   * <p>すべてのアクティビティに対してアカウントで現在アクティブなサブスクリプションの数を返します。 / countエンドポイントにはApp-only Oauthが必要なので、app-user
+   * authの代わりにベアラトークンを使用してリクエストを行う必要があることに注意してください。
+   */
+  public void countSubscriptions() {
+    try {
+      HttpResponse ret =
+          mTwitter4JUtil
+              .getApplicationOnlyAuthentication()
+              .get(TWITTER_API_ACCOUNT_ACTIVITY_COUNT_URL_STR);
+      LOG.log(Level.INFO, "countSubscriptions ret.toString(): " + ret.toString());
+      LOG.log(Level.INFO, "countSubscriptions ret.asString(): " + ret.asString());
+    } catch (TwitterException e) {
+      e.printStackTrace();
     }
   }
 

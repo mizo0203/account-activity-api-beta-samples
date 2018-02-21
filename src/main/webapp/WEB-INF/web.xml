@@ -20,6 +20,14 @@
         <url-pattern>/admin/subscriptions</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>count_subscriptions</servlet-name>
+        <servlet-class>com.mizo0203.twitter.account.activity.api.beta.samples.CountSubscriptionsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>count_subscriptions</servlet-name>
+        <url-pattern>/admin/count_subscriptions</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>is_subscribed</servlet-name>
         <servlet-class>com.mizo0203.twitter.account.activity.api.beta.samples.IsSubscribedServlet</servlet-class>
     </servlet>
