@@ -62,6 +62,18 @@ public class UseCase implements AutoCloseable {
   }
 
   /**
+   * Returns a list of the current All Activity type subscriptions. Note that the /list endpoint
+   * requires App-only Oauth, so requests should be made using a bearer token instead of app-user
+   * auth.
+   *
+   * <p>現在のAll Activity型サブスクリプションのリストを返します。 / listエンドポイントではApp-only Oauthが必要なので、app-user
+   * authの代わりにベアラトークンを使用してリクエストする必要があります。
+   */
+  public void listCurrentAllActivityTypeSubscriptions() {
+    mTwitterClient.listCurrentAllActivityTypeSubscriptions();
+  }
+
+  /**
    * Deactivates subscription(s) for the provided user context and app for all activities. After
    * deactivation, all All events for the requesting user will no longer be sent to the webhook URL.
    *

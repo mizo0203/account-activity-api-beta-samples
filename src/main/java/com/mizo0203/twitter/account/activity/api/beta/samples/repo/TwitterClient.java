@@ -21,6 +21,8 @@ public class TwitterClient {
       "https://api.twitter.com/1.1/account_activity/all/env-beta/subscriptions.json";
   private static final String TWITTER_API_ACCOUNT_ACTIVITY_COUNT_URL_STR =
       "https://api.twitter.com/1.1/account_activity/all/count.json";
+  private static final String TWITTER_API_ACCOUNT_ACTIVITY_LIST_SUBSCRIPTIONS_URL_STR =
+      "https://api.twitter.com/1.1/account_activity/all/:env_name/subscriptions/list.json";
   private final Twitter mTwitter;
   private final Twitter4JUtil mTwitter4JUtil;
 
@@ -113,6 +115,29 @@ public class TwitterClient {
               .get(TWITTER_API_ACCOUNT_ACTIVITY_SUBSCRIPTIONS_ENV_NAME_URL_STR);
       LOG.log(Level.INFO, "isSubscribed ret.toString(): " + ret.toString());
       LOG.log(Level.INFO, "isSubscribed ret.asString(): " + ret.asString());
+    } catch (TwitterException e) {
+      e.printStackTrace();
+    }
+  }
+
+  /**
+   * Returns a list of the current All Activity type subscriptions. Note that the /list endpoint
+   * requires App-only Oauth, so requests should be made using a bearer token instead of app-user
+   * auth.
+   *
+   * <p>現在のAll Activity型サブスクリプションのリストを返します。 / listエンドポイントではApp-only Oauthが必要なので、app-user
+   * authの代わりにベアラトークンを使用してリクエストする必要があります。
+   */
+  public void listCurrentAllActivityTypeSubscriptions() {
+    try {
+      HttpResponse ret =
+          mTwitter4JUtil
+              .getApplicationOnlyAuthentication()
+              .get(TWITTER_API_ACCOUNT_ACTIVITY_LIST_SUBSCRIPTIONS_URL_STR);
+      LOG.log(
+          Level.INFO, "listCurrentAllActivityTypeSubscriptions ret.toString(): " + ret.toString());
+      LOG.log(
+          Level.INFO, "listCurrentAllActivityTypeSubscriptions ret.asString(): " + ret.asString());
     } catch (TwitterException e) {
       e.printStackTrace();
     }

@@ -44,6 +44,16 @@
         <url-pattern>/admin/returns_all_urls</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>list_current_all_activity_type_subscriptions</servlet-name>
+        <servlet-class>
+            com.mizo0203.twitter.account.activity.api.beta.samples.ListCurrentAllActivityTypeSubscriptionsServlet
+        </servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>list_current_all_activity_type_subscriptions</servlet-name>
+        <url-pattern>/admin/list_current_all_activity_type_subscriptions</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>deactivates_subscriptions</servlet-name>
         <servlet-class>com.mizo0203.twitter.account.activity.api.beta.samples.DeactivatesSubscriptionsServlet
         </servlet-class>
