@@ -22,7 +22,7 @@ public class TwitterClient {
   private static final String TWITTER_API_ACCOUNT_ACTIVITY_COUNT_URL_STR =
       "https://api.twitter.com/1.1/account_activity/all/count.json";
   private static final String TWITTER_API_ACCOUNT_ACTIVITY_LIST_SUBSCRIPTIONS_URL_STR =
-      "https://api.twitter.com/1.1/account_activity/all/:env_name/subscriptions/list.json";
+      "https://api.twitter.com/1.1/account_activity/all/env-beta/subscriptions/list.json";
   private final Twitter mTwitter;
   private final Twitter4JUtil mTwitter4JUtil;
 
