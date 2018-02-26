@@ -3,6 +3,7 @@ package com.mizo0203.twitter.account.activity.api.beta.samples;
 import com.mizo0203.twitter.account.activity.api.beta.samples.domain.difine.KeysAndAccessTokens;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.IOUtils;
+import twitter4j.*;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -24,7 +25,9 @@ public class TwitterHookHandlerServlet extends HttpServlet {
 
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-    LOG.info(IOUtils.toString(req.getInputStream(), StandardCharsets.UTF_8));
+    String source = IOUtils.toString(req.getInputStream(), StandardCharsets.UTF_8);
+    LOG.info(source);
+    parse(source);
   }
 
   @Override
@@ -48,5 +51,21 @@ public class TwitterHookHandlerServlet extends HttpServlet {
     mac.init(key);
     byte[] source = httpRequestBody.getBytes("UTF-8");
     return Base64.encodeBase64String(mac.doFinal(source));
+  }
+
+  private void parse(String source) {
+    try {
+      JSONObject json = new JSONObject(source);
+      if (json.isNull("tweet_create_events")) {
+        return;
+      }
+      JSONArray tweet_create_events = json.getJSONArray("tweet_create_events");
+      for (int i = 0; i < tweet_create_events.length(); i++) {
+        Status status = Twitter4JJSONUtil.asStatus(tweet_create_events.getJSONObject(i));
+        LOG.log(Level.INFO, "parse status: " + status);
+      }
+    } catch (JSONException | TwitterException e) {
+      e.printStackTrace();
+    }
   }
 }
