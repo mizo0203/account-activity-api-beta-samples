@@ -63,6 +63,16 @@ public class TwitterClient {
     }
   }
 
+  /**
+   * Subscribes the provided application to all events for the provided environment for all message
+   * types. After activation, all events for the requesting user will be sent to the application’s
+   * webhook via POST request. Subscriptions are limited to a maximum of 15 unique users per
+   * application in the free (sandbox) tier. *
+   *
+   * <p>提供されたアプリケーションを、すべてのメッセージタイプの提供された環境のすべてのイベントにサブスクライブします。
+   * アクティベーション後、リクエストしているユーザーのすべてのイベントは、POSTリクエストを介してアプリケーションのWebhookに送信されます。
+   * サブスクリプションは、フリー（サンドボックス）層のアプリケーションごとに最大15の一意のユーザーに制限されています。
+   */
   public void subscriptions() {
     try {
       Method method = mTwitter.getClass().getDeclaredMethod("post", String.class);

@@ -26,7 +26,6 @@ public class TwitterHookHandlerServlet extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
     String source = IOUtils.toString(req.getInputStream(), StandardCharsets.UTF_8);
-    LOG.info(source);
     parse(source);
   }
 
@@ -54,18 +53,33 @@ public class TwitterHookHandlerServlet extends HttpServlet {
   }
 
   private void parse(String source) {
+    LOG.log(Level.INFO, "parse source: " + source);
     try {
       JSONObject json = new JSONObject(source);
       if (json.isNull("tweet_create_events")) {
         return;
       }
+      long forUserId = json.getLong("for_user_id");
       JSONArray tweet_create_events = json.getJSONArray("tweet_create_events");
       for (int i = 0; i < tweet_create_events.length(); i++) {
-        Status status = Twitter4JJSONUtil.asStatus(tweet_create_events.getJSONObject(i));
-        LOG.log(Level.INFO, "parse status: " + status);
+        onTweetCreateEvent(
+            forUserId, Twitter4JJSONUtil.asStatus(tweet_create_events.getJSONObject(i)));
       }
     } catch (JSONException | TwitterException e) {
       e.printStackTrace();
     }
+  }
+
+  /**
+   * twitter、Retweets、返信、@mentions、QuoteTweetsのいずれかがサブスクリプションユーザーによって、
+   * またはサブスクリプションユーザーに行われたときのステータスペイロードをツイートします
+   *
+   * <p>Tweet status payload when any of the following actions are taken by or to the subscription
+   * user: Tweets, Retweets, Replies, @mentions, QuoteTweets
+   *
+   * @param status ステータス
+   */
+  private void onTweetCreateEvent(long forUserId, Status status) {
+    LOG.log(Level.INFO, "onTweetCreateEvent forUserId: " + forUserId + " status: " + status);
   }
 }
